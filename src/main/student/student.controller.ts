@@ -7,11 +7,30 @@ import { StudentCreateDto } from './_dto/student.dto';
 import { Student } from './_entity/student.entity';
 
 @Controller('api/student')
-@ApiTags('Students')
+@ApiTags('Student')
 export class StudentController {
     constructor(
         private studentServise: StudentService,
     ) { }
+
+    @Post()
+    @ApiOperation({ summary: 'Create students.' })
+    @ApiResponse({
+        type: Student,
+        status: HTTP_STATUS.SUCCESS,
+        description: 'Student added.'
+    })
+    // @PermissionsAction
+    async addStudet(
+        @Body() data: StudentCreateDto,
+    ): Promise<ApiResponseInterface> {
+        const student: Student = await this.studentServise.createCtudent(data)
+        return {
+            status: HTTP_STATUS.SUCCESS,
+            data: student
+        }
+    }
+
 
     @Get('all')
     @ApiOperation({ summary: 'Get all students.' })
@@ -48,24 +67,7 @@ export class StudentController {
         }
     }
 
-    @Post()
-    @ApiOperation({ summary: 'Create students.' })
-    @ApiResponse({
-        type: Student,
-        status: HTTP_STATUS.SUCCESS,
-        description: 'Student added.'
-    })
-    // @PermissionsAction
-    async addStudet(
-        @Body() data: StudentCreateDto,
-    ): Promise<ApiResponseInterface> {
-        const student: Student = await this.studentServise.createCtudent(data)
-        return {
-            status: HTTP_STATUS.SUCCESS,
-            data: student
-        }
-    }
-
+    
    
 
     @Delete()
