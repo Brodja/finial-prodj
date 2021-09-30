@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, RelationId, Unique, Index } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, RelationId, Unique, Index, IsNull } from 'typeorm';
 
 @Entity()
 export class Student {
@@ -7,6 +7,10 @@ export class Student {
     @ApiProperty({description: 'Id of student.'})
     @PrimaryGeneratedColumn()
     id: number;
+
+    @ApiProperty({description: 'Ид студентського квитка'})
+    @Column()
+    studentId: string;
 
     @ApiProperty({description: 'Students name.'})
     @Column()
@@ -20,7 +24,15 @@ export class Student {
     @Column()
     middleName: string;
 
-    @ApiProperty({description: 'Students name.'})
+    @ApiProperty({description: 'Students birthday.'})
     @Column()
-    year: number;
+    birthday: number;
+
+    @ApiProperty({description: 'foto'})
+    @Column({nullable: true})
+    logoName: string;
+
+    @ApiProperty({description: 'startYear'})
+    @Column()
+    startYear: number;
 }
