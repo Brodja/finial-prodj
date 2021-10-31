@@ -19,4 +19,8 @@ export class Action {
     @ApiProperty({description: 'Id of the student.'})
     @Column({type: 'date', nullable: false})
     dateOfIssue: string;
+
+    // @ApiProperty({description: 'Id of the student.'})
+    // @Column({type: 'date', nullable: false})
+    // dateOfReturn: string;
 }

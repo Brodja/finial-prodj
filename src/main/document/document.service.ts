@@ -40,6 +40,8 @@ export class DocumentService {
         const savedDocument = await this.documentRepository.save(document); 
         return savedDocument
     }
-
+    async deleteDocumentByDocumentId(id: number) {
+        await this.documentRepository.delete({id: id});
+    }
     
 }

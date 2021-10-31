@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ActionModule } from './main/action/action.module';
 import { Action } from './main/action/_entity/action-with-document.entity';
 import { DocumentModule } from './main/document/document.module';
 import { Author } from './main/document/_entity/authors.entity';
@@ -17,10 +18,10 @@ import { Student } from './main/student/_entity/student.entity';
       username: 'postgres',
       password: 'Testpass!@34',
       database: 'online_archive',
-      entities: [Student, Author, DocumentInLib, Genre, Action],
+      entities: ["dist/**/*.entity{.ts,.js}"],
       synchronize: true,
     }),
-     StudentModule,DocumentModule ],
+     StudentModule,DocumentModule, ActionModule ],
   // imports: [StudentModule, DatabaseModule],
   controllers: [],
   exports: [

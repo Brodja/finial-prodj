@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HTTP_STATUS } from '../_components/_enum/http-status.enum';
 import { ApiResponseInterface } from '../_components/_interface/http-api-response.interface';
@@ -88,6 +88,21 @@ export class DocumentController {
         return {
             status: HTTP_STATUS.SUCCESS,
             data: document
+        }
+    }
+
+    @Delete()
+    @ApiOperation({ summary: 'Delete doc.' })
+    @ApiResponse({
+        status: HTTP_STATUS.SUCCESS,
+        description: 'Doc was deleted.'
+    })
+    async deleteDocument (
+        @Query('document') id: number,
+    ): Promise<ApiResponseInterface>{
+       await this.documentService.deleteDocumentByDocumentId(id)
+        return {
+            status: HTTP_STATUS.SUCCESS
         }
     }
 }
