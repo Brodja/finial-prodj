@@ -3,26 +3,27 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, RelationI
 import { Author } from './authors.entity';
 import { Genre } from './genres.entity';
 
+
 @Entity()
 export class DocumentInLib {
-    
-    @ApiProperty({description: 'Id of the document.'})
+
+    @ApiProperty({ description: 'Id of the document.' })
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ApiProperty({description: 'Name of the document.'})
+    @ApiProperty({ description: 'Name of the document.' })
     @Column()
     name: string;
 
-    @ManyToOne(type => Genre, {nullable: false})
+    @ManyToOne(type => Genre, { nullable: false })
     genre: Genre;
-    @ApiProperty({description: 'Genre of the document.'})
+    @ApiProperty({ description: 'Genre of the document.' })
     @Column()
     genreId: number;
 
-    @ManyToOne(type => Author, {nullable: false})
+    @ManyToOne(type => Author, { nullable: false })
     author: Author;
-    @ApiProperty({description: 'Author of the document.'})
+    @ApiProperty({ description: 'Author of the document.' })
     @Column()
     authorId: number;
 

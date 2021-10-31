@@ -9,7 +9,14 @@ export class Action {
     id: number;
 
     @ApiProperty({description: 'Id of the documet.'})
-    @Column()
+    @Column({nullable: false})
     documentId: number;
 
+    @ApiProperty({description: 'Id of the student.'})
+    @Column({nullable: false})
+    studentId: number;
+
+    @ApiProperty({description: 'Id of the student.'})
+    @Column({type: 'date', nullable: false})
+    dateOfIssue: string;
 }
