@@ -21,7 +21,7 @@ import { Student } from './main/student/_entity/student.entity';
       entities: ["dist/**/*.entity{.ts,.js}"],
       synchronize: true,
     }),
-     StudentModule,DocumentModule, ActionModule ],
+     StudentModule, DocumentModule, ActionModule ],
   // imports: [StudentModule, DatabaseModule],
   controllers: [],
   exports: [

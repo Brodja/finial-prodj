@@ -6,7 +6,7 @@ import { StudentService } from './student.service';
 import { Student } from './_entity/student.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Student])],
+  imports: [TypeOrmModule.forFeature([Student, ])],
   controllers: [StudentController],
   providers: [StudentService],
   exports:[StudentService]

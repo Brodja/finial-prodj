@@ -14,7 +14,7 @@ const config: ConnectionOptions = {
     username: data.dbUser,
     password: data.dbPassword,
     database: data.dbDatabaseName,
-    entities: [Student],
+    entities: ["dist/**/*.entity{.ts,.js}"],
     dropSchema: false,
     synchronize: false,
     logging: false,
