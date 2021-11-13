@@ -17,4 +17,8 @@ export class AuthorService {
         const savedAuthor = await this.authorRepository.save(author); 
         return savedAuthor
     }
+
+    async deleteAuthorById(id: number) {
+        await this.authorRepository.delete({id: id});
+    }
 }

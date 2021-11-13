@@ -21,4 +21,16 @@ export class ActionService {
         const savedAction = await this.actionRepository.save(action); 
         return savedAction
     }
+
+    async receivingDocument(actionId: number, date: string): Promise<Action>{
+        const where = {
+            id: actionId
+        }
+        const action: Action = await this.actionRepository.findOne({where})
+        if (!action) {
+            return null;
+        }
+        action.dateOfReturn = date
+        return await this.actionRepository.save(action);
+    }
 }

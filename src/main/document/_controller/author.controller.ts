@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Post, Query } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { HTTP_STATUS } from "src/main/_components/_enum/http-status.enum";
 import { ApiResponseInterface } from "src/main/_components/_interface/http-api-response.interface";
@@ -27,6 +27,21 @@ export class AuthorController {
         return {
             status: HTTP_STATUS.SUCCESS,
             data: []
+        }
+    }
+
+    @Delete()
+    @ApiOperation({ summary: 'Delete author.' })
+    @ApiResponse({
+        status: HTTP_STATUS.SUCCESS,
+        description: 'Author was deleted.'
+    })
+    async deleteAuthor (
+        @Query('authorId') id: number,
+    ): Promise<ApiResponseInterface>{
+       await this.authorService.deleteAuthorById(id)
+        return {
+            status: HTTP_STATUS.SUCCESS
         }
     }
 }

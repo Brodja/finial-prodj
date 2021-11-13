@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Post, Query } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { HTTP_STATUS } from "src/main/_components/_enum/http-status.enum";
 import { ApiResponseInterface } from "src/main/_components/_interface/http-api-response.interface";
@@ -30,6 +30,21 @@ export class GenreController {
         return {
             status: HTTP_STATUS.SUCCESS,
             data: genre
+        }
+    }
+
+    @Delete()
+    @ApiOperation({ summary: 'Delete genre.' })
+    @ApiResponse({
+        status: HTTP_STATUS.SUCCESS,
+        description: 'Genre was deleted.'
+    })
+    async deleteGenre (
+        @Query('genreId') id: number,
+    ): Promise<ApiResponseInterface>{
+       await this.genreService.deleteGenreById(id)
+        return {
+            status: HTTP_STATUS.SUCCESS
         }
     }
 }

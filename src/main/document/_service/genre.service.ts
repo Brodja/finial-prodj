@@ -17,4 +17,8 @@ export class GenreService {
         const savedGenre = await this.genreRepository.save(genre); 
         return savedGenre
     }
+
+    async deleteGenreById(id: number) {
+        await this.genreRepository.delete({id: id});
+    }
 }

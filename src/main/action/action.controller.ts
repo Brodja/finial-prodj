@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HTTP_STATUS } from '../_components/_enum/http-status.enum';
 import { ApiResponseInterface } from '../_components/_interface/http-api-response.interface';
@@ -11,15 +11,15 @@ import { Action } from './_entity/action-with-document.entity';
 export class ActionController {
     constructor(
         private actionService: ActionService
-    ){}
-     
+    ) { }
+
     @Get()
-    @ApiOperation({summary:'Get all'})
+    @ApiOperation({ summary: 'Get all' })
     @ApiResponse({
         type: Action,
         status: HTTP_STATUS.SUCCESS,
         description: 'All'
-    }) 
+    })
     async getAllActions(
 
     ): Promise<ApiResponseInterface> {
@@ -43,9 +43,26 @@ export class ActionController {
         const action: Action = await this.actionService.addIssuance(data)
         return {
             status: HTTP_STATUS.SUCCESS,
-            data: action                                                                                                                 
+            data: action
         }
     }
 
-    
+    @Put()
+    @ApiOperation({ summary: 'The document was receiving.' })
+    @ApiResponse({
+        type: Action,
+        status: HTTP_STATUS.SUCCESS,
+        description: 'Document received.'
+    })
+    async receivingDocument(
+        @Body() data
+    ): Promise<ApiResponseInterface> {
+        const action: Action = await this.actionService.receivingDocument(data.actionId, data.date)
+        return {
+            status: HTTP_STATUS.SUCCESS,
+            data: action
+        }
+    }
+
+
 }
