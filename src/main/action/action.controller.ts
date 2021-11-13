@@ -20,7 +20,7 @@ export class ActionController {
         status: HTTP_STATUS.SUCCESS,
         description: 'All'
     }) 
-    async getAllCtions(
+    async getAllActions(
 
     ): Promise<ApiResponseInterface> {
         return {

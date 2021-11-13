@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Author } from './_entity/authors.entity';
-import { DocumentInLib } from './_entity/document.entity';
-import { Genre } from './_entity/genres.entity';
-import { AuthorInterface } from './_interface/authorCreate';
-import { DocumentCreateInterface } from './_interface/documentCreate';
-import { GenreInterface } from './_interface/genreCreate';
+import { Author } from '../_entity/authors.entity';
+import { DocumentInLib } from '../_entity/document.entity';
+import { Genre } from '../_entity/genres.entity';
+import { AuthorInterface } from '../_interface/authorCreate';
+import { DocumentCreateInterface } from '../_interface/documentCreate';
+import { GenreInterface } from '../_interface/genreCreate';
 
 @Injectable()
 export class DocumentService {
@@ -19,12 +19,7 @@ export class DocumentService {
         private genreRepository: Repository<Genre>,
         
     ){}
-    async addAuthor(data: AuthorInterface): Promise<Author> {
-        const author = new Author();
-        author.fullName = data.fullName
-        const savedAuthor = await this.authorRepository.save(author); 
-        return savedAuthor
-    }
+   
     async addGenre(data: GenreInterface): Promise<Genre> {
         const genre = new Genre();
         genre.name = data.name
