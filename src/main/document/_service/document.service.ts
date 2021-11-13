@@ -19,13 +19,6 @@ export class DocumentService {
         private genreRepository: Repository<Genre>,
         
     ){}
-   
-    async addGenre(data: GenreInterface): Promise<Genre> {
-        const genre = new Genre();
-        genre.name = data.name
-        const savedGenre = await this.genreRepository.save(genre); 
-        return savedGenre
-    }
 
     async addDocument(data: DocumentCreateInterface): Promise<DocumentInLib> {
         const document = new DocumentInLib();
