@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HTTP_STATUS } from '../_components/_enum/http-status.enum';
 import { ApiResponseInterface } from '../_components/_interface/http-api-response.interface';
 import { StudentService } from './student.service';
 import { StudentCreateDto } from './_dto/student.dto';
 import { Student } from './_entity/student.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/student')
 @ApiTags('Student')
@@ -12,7 +13,8 @@ export class StudentController {
     constructor(
         private studentServise: StudentService,
     ) { }
-
+    
+    // @UseGuards(AuthGuard('local'))
     @Post()
     @ApiOperation({ summary: 'Create students.' })
     @ApiResponse({
